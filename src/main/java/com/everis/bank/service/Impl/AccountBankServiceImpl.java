@@ -22,7 +22,7 @@ public class AccountBankServiceImpl implements AccountBankService {
    //Reporta saldo
 	@Override
 	public Flux<ReportBalance> reportSaldo(String idCliente) {
-		return WebClient.builder().baseUrl("http://localhost:8009/client/client/").build().get().uri(idCliente)
+		return WebClient.builder().baseUrl("http://localhost:8081/clients/").build().get().uri(idCliente)
 				.retrieve().bodyToMono(Client.class).log().flatMapMany(cli -> {
 					return accbankrep.findByClient(cli);
 				}).flatMap(clPro -> {
