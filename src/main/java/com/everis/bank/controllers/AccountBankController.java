@@ -20,29 +20,26 @@ import reactor.core.publisher.Mono;
 
 
 @RestController
-@RequestMapping("/accountbank")
+@RequestMapping("/account-banks")
 public class AccountBankController {
 
 	
 	@Autowired
 	private AccountBankService AccountBankServ;
 	
-	/*@GetMapping("/{idCliente}")
-	public Flux<AccountBank> FindProducxClient(@PathVariable String idClient) {
-		return AccountBankServ.findxClient(idClient);	
-	}*/
+
 	
-	@ApiOperation(value = "save a accountbank", notes="save object account")
+	@ApiOperation(value = "save a account bank", notes="save object account")
 	@PostMapping
 	public Mono<AccountBank> saveAccountBank(@RequestBody @Valid AccountBank accountBank) {
 		return AccountBankServ.save(accountBank);
 	}
 	
 	
-	@ApiOperation(value = "Find a Accountbank", notes="Find a bank by id account")
-	@GetMapping("/{idproduct}")
-	public Mono<AccountBank> findbyId(@PathVariable String idproduct) {
-		return AccountBankServ.findById(idproduct);
+	@ApiOperation(value = "Find a Account bank", notes="Find a bank by id account")
+	@GetMapping("/{productId}")
+	public Mono<AccountBank> findById(@PathVariable(name = "productId") String productId) {
+		return AccountBankServ.findById(productId);
 	}
 	
 	
@@ -53,10 +50,10 @@ public class AccountBankController {
 	}
 	
 	
-	@GetMapping("/reporte/{idCliente}")
-	@ApiOperation(value = "List balanace for client", notes="Generate balance by id Cliente ")
-	public Flux<ReportBalance> reporteProductosSaldo(@PathVariable String idClient) {
-		return AccountBankServ.reportSaldo(idClient);
+	@GetMapping("/reports/{clientId}")
+	@ApiOperation(value = "List balance for client", notes="Generate balance by client Id ")
+	public Flux<ReportBalance> reportProductsBalance(@PathVariable String clientId) {
+		return AccountBankServ.reportSaldo(clientId);
 	}
 	
 	

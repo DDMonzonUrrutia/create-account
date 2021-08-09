@@ -1,7 +1,5 @@
 package com.everis.bank.domain;
 
-import org.springframework.data.mongodb.core.mapping.Document;
-
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,12 +13,12 @@ public  @Data  class ProductBank {
 	private String id;
 	private String description;
 	private TypeProductBank typeProductBank;
-	private Integer codigo;
-	public ProductBank(String description, TypeProductBank typeProductBank, Integer codigo) {
+	private Integer code;
+	public ProductBank(String description, TypeProductBank typeProductBank, Integer code) {
 		super();
 		this.description = description;
 		this.typeProductBank = typeProductBank;
-		this.codigo = codigo;
+		this.code = code;
 	}
 	
 	

@@ -1,8 +1,6 @@
 package com.everis.bank.domain;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
 
 
 import lombok.AllArgsConstructor;
@@ -16,11 +14,11 @@ public @Data class TypeClient {
 
 	@Id
 	private String id ;
-	private String nombre ;
+	private String name;
 	private Integer valtip ;
-	public TypeClient(String nombre, Integer valtip) {
+	public TypeClient(String name, Integer valtip) {
 		super();
-		this.nombre = nombre;
+		this.name = name;
 		this.valtip = valtip;
 	}
 	

@@ -26,7 +26,7 @@ public class AccountBankServiceImpl implements AccountBankService {
 				.retrieve().bodyToMono(Client.class).log().flatMapMany(cli -> {
 					return accbankrep.findByClient(cli);
 				}).flatMap(clPro -> {
-					return Flux.just(new ReportBalance(clPro.getNumcount(), clPro.getBalance()));
+					return Flux.just(new ReportBalance(clPro.getNumCount(), clPro.getBalance()));
 				});
 	}
 
@@ -49,8 +49,8 @@ public class AccountBankServiceImpl implements AccountBankService {
 					if (accountBank.getClient().getType().getValtip() == 1) {
 						System.out.println("el codigo es ");
 						System.out.println(count);
-						if (accountBank.getProduct().getCodigo() == 1 || accountBank.getProduct().getCodigo() == 2
-								|| accountBank.getProduct().getCodigo() == 3) {
+						if (accountBank.getProduct().getCode() == 1 || accountBank.getProduct().getCode() == 2
+								|| accountBank.getProduct().getCode() == 3) {
 							if (count > 0) {
 
 								String error = "el cliente ya cuenta con una cuenta tipo "
@@ -67,18 +67,18 @@ public class AccountBankServiceImpl implements AccountBankService {
 
 						// valida tipo Cliente Empresarial
 					} else if (accountBank.getClient().getType().getValtip() == 2) {
-						if (accountBank.getProduct().getCodigo() == 1 || accountBank.getProduct().getCodigo() == 3) {
+						if (accountBank.getProduct().getCode() == 1 || accountBank.getProduct().getCode() == 3) {
 							String error = " no puede acceder a estas cuentas "
 									+ accountBank.getProduct().getDescription();
 							return Mono.error(new InterruptedException(error));
 
-						} else if (accountBank.getProduct().getCodigo() == 2) {
+						} else if (accountBank.getProduct().getCode() == 2) {
 							return accbankrep.save(accountBank);
 						}
 
 							// Person bank 
 					} else if (accountBank.getClient().getType().getValtip() == 3) {
-						if (accountBank.getProduct().getCodigo() == 4) {
+						if (accountBank.getProduct().getCode() == 4) {
 							//limite de inicio de monto de 500
 							if (accountBank.getBalance() > 0) {
 
@@ -100,7 +100,7 @@ public class AccountBankServiceImpl implements AccountBankService {
 
 	public Flux<AccountBank> ValidCant(AccountBank acc) {
 		return accbankrep.findQuery(acc.getClient().getId(), acc.getClient().getType().getValtip(),
-				acc.getProduct().getCodigo());
+				acc.getProduct().getCode());
 	}
 
 	@Override
