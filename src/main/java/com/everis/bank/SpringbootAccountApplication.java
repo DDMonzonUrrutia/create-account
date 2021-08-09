@@ -3,12 +3,9 @@ package com.everis.bank;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-//import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
-//import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
-//
-//@EnableCircuitBreaker
-//@EnableEurekaClient
+@EnableDiscoveryClient
 @SpringBootApplication
 public class SpringbootAccountApplication implements CommandLineRunner {
 
